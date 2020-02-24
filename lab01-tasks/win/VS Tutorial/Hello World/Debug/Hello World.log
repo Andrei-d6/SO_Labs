@@ -1,0 +1,4 @@
+﻿  hello.c
+cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+hello.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  Hello World.vcxproj -> C:\Users\Speedy2\Desktop\SO\lab01-tasks\win\VS Tutorial\Debug\Hello World.exe

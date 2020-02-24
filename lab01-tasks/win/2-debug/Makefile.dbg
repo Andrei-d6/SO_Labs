@@ -1,0 +1,10 @@
+CFLAGS=/nologo /W4 /EHsc /Za /DDEBUG__
+
+main.exe: main.obj add.obj       # TODO requirements
+	cl $(CFLAGS) $** /Fe$@ 
+main.obj: main.c       # TODO requirements
+	cl $(CFLAGS) /c main.c
+add.obj: add.c     # TODO requirements
+	cl $(CFLAGS) /c add.c 
+clean:
+	del *.obj *.exe

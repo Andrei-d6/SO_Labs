@@ -1,0 +1,23 @@
+CC = gcc
+CFLAGS = -Wall -fPIC
+
+LDFLAGS = -L.
+
+all:  main_dynamic
+
+main_dynamic: main.o libhexdump_dynamic.so
+	gcc -o $@ $^ -L.
+
+libhexdump_dynamic.so: hexdump.o sample.o
+	gcc -shared $^ -o $@
+
+main.o: main.c
+	gcc -c $^
+
+hexdump.o: hexdump.c
+	gcc -fPIC -c $^
+sample.o: sample.c
+	gcc -fPIC -c $^
+
+clean:
+	rm -f *.o  main_dynamic libhexdump_dynamic.so
