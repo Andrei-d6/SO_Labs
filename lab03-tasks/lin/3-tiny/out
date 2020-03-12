@@ -1,0 +1,8 @@
+total 52
+drwxr-xr-x 2 student student  4096 Mar  6 18:42 .
+drwxr-xr-x 9 student student  4096 Feb 26 15:57 ..
+-rw-r--r-- 1 student student   162 Feb 26 15:57 Makefile
+-rw-r--r-- 1 student student     0 Mar  6 18:42 out
+-rwxr-xr-x 1 student student 17776 Mar  6 18:42 tiny
+-rw-r--r-- 1 student student  3638 Mar  6 18:42 tiny.c
+-rw-r--r-- 1 student student 13208 Mar  6 18:42 tiny.o

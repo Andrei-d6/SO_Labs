@@ -1,0 +1,9 @@
+total 81
+drwxrwx---+ 1 Student None     0 Mar  6 19:05 .
+drwxrwx---+ 1 Student None     0 Mar  6 18:47 ..
+-rwxrwx---+ 1 Student None  4048 Feb 26 15:57 2-tiny.vcproj
+-rwxrwx---+ 1 Student None   207 Feb 26 15:57 Makefile
+-rwxrwx---+ 1 Student None     0 Mar  6 19:06 out
+-rwxrwx---+ 1 Student None  7093 Mar  6 19:06 tiny.c
+-rwxrwx---+ 1 Student None 51712 Mar  6 19:06 tiny.exe
+-rwxrwx---+ 1 Student None  6499 Mar  6 19:06 tiny.obj
