@@ -1,0 +1,1 @@
+cmd_/home/student/Downloads/lab02-tasks/lin/nasty/nasty.ko := ld -r -m elf_x86_64 -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/student/Downloads/lab02-tasks/lin/nasty/nasty.ko /home/student/Downloads/lab02-tasks/lin/nasty/nasty.o /home/student/Downloads/lab02-tasks/lin/nasty/nasty.mod.o ;  true

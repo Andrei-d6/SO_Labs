@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="lab02-win">
+</Property><Property Name="Solution File" Value="C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\lab02-win.sln">
+</Property><Property Name="Date" Value="Friday, February 28, 2020">
+</Property><Property Name="Time" Value="18:43 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="lab02-win.sln" Description="File successfully backed up as C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\lab02-win.sln.old">
+</Event><Event ErrorLevel="0" Project="1-cat" Source="1-cat\1-cat.vcproj" Description="Converting project file 'C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\1-cat\1-cat.vcproj'.">
+</Event><Event ErrorLevel="1" Project="1-cat" Source="1-cat\1-cat.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="1-cat" Source="1-cat\1-cat.vcproj" Description="Done converting to new project file 'C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\1-cat\1-cat.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="1-cat" Source="1-cat\1-cat.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="2-crc" Source="2-crc\2-crc.vcproj" Description="Converting project file 'C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\2-crc\2-crc.vcproj'.">
+</Event><Event ErrorLevel="1" Project="2-crc" Source="2-crc\2-crc.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="2-crc" Source="2-crc\2-crc.vcproj" Description="Done converting to new project file 'C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\2-crc\2-crc.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="2-crc" Source="2-crc\2-crc.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="3-ls" Source="3-ls\3-ls.vcproj" Description="Converting project file 'C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\3-ls\3-ls.vcproj'.">
+</Event><Event ErrorLevel="1" Project="3-ls" Source="3-ls\3-ls.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="3-ls" Source="3-ls\3-ls.vcproj" Description="Done converting to new project file 'C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\3-ls\3-ls.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="3-ls" Source="3-ls\3-ls.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="4-trouble" Source="4-trouble\4-trouble.vcproj" Description="Converting project file 'C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\4-trouble\4-trouble.vcproj'.">
+</Event><Event ErrorLevel="1" Project="4-trouble" Source="4-trouble\4-trouble.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="4-trouble" Source="4-trouble\4-trouble.vcproj" Description="Done converting to new project file 'C:\Users\Student\Downloads\lab02-tasks\lab02-tasks\win\4-trouble\4-trouble.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="4-trouble" Source="4-trouble\4-trouble.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="lab02-win.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="lab02-win.sln" Description="Converted">
+</Event></UpgradeLog>
