@@ -20,7 +20,12 @@ void *xmalloc(size_t size);
 #define xfree(ptr) \
 	do { \
 		BOOL bRet; \
-		HANDLE hProcessHeap; \
+		HANDLE hProcessHeap = GetProcessHeap(); \
+		DIE(hProcessHeap == NULL, "GetProcessHeap"); \
+		\
+		bRet = HeapFree(hProcessHeap, 0, ptr); \
+		DIE(bRet == FALSE, "HeapFree"); \
+		ptr = NULL; \
 	} while (0)
 
 #endif

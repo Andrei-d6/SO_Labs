@@ -1,4 +1,4 @@
-/**
+c/**
  * SO, 2016
  * Lab #5, Gestiunea Memoriei
  *
@@ -24,8 +24,14 @@ static int ***tensor_alloc(int l, int m, int n)
 	int i, j;
 	int ***t;
 	/* TODO */
-
-	return t;
+	t = (int ***)xmalloc(l * sizeof(int **));
+	
+	for (i = 0; i < l; i++) {
+         t[i] =  (int **)xmalloc(m * sizeof(int *));
+         for (j = 0; j < m; j++)
+                t[i][j] =  (int *)xmalloc(n * sizeof(int));
+    }
+	return t;c
 }
 
 static void tensor_free(int ***t, int l, int m)
@@ -33,7 +39,12 @@ static void tensor_free(int ***t, int l, int m)
 	int i, j;
 
 	/* TODO */
-
+	for (i = 0; i < l; i++) {
+		for (j = 0; j < m; j++)
+			xfree(t[i][j]);
+		xfree(t[i]);
+	}
+	xfree(t);
 }
 
 static void tensor_init(int ***t, int l, int m, int n)

@@ -23,6 +23,10 @@ void *xmalloc(size_t size)
 	void *ptr;
 
 	/* TODO */
+	hProcessHeap = GetProcessHeap();
+	DIE(hProcessHeap == NULL, "GetProcessHeap");
 
+	ptr = HeapAlloc(hProcessHeap, 0, size);
+	DIE(ptr == NULL, "HeapAlloc");
 	return ptr;
 }
