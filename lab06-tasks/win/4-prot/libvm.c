@@ -18,7 +18,7 @@
 #include <limits.h>
 #include <windows.h>
 
-#include <utils.h>
+#include "utils.h"
 
 static LPVOID access_violation_handler;
 static int pageSize = 0x1000;
@@ -35,15 +35,35 @@ static LONG CALLBACK access_violation(PEXCEPTION_POINTERS ExceptionInfo)
 	int pageNo;
 
 	/* TODO - get the memory location which caused the page fault */
+	addr = (LPBYTE)ExceptionInfo->ExceptionRecord->ExceptionInformation[1];
 
 	/* TODO - get the page number which caused the page fault */
-
+	pageNo = (int)(addr - p) / pageSize;
 
 	/* TODO - test if page is one of our own */
-
+	if (!(pageNo >= 0 && pageNo < 3)) {
+		printf("wrong page %d\n", pageNo);
+		return EXCEPTION_CONTINUE_SEARCH;
+	}
 
 	/* TODO - increase protection for that page */
+	if (how[pageNo] == PAGE_NOACCESS) {
 
+		how[pageNo] = PAGE_READONLY;
+
+		rc = VirtualProtect(p+pageNo*pageSize, pageSize, PAGE_READONLY, &old);
+		DIE(rc == FALSE, "VirtualProtect");
+
+		printf("PAGE_READONLY to page %d\n", pageNo);
+	} else {
+
+		how[pageNo] = PAGE_READWRITE;
+
+		rc = VirtualProtect(p+pageNo*pageSize, pageSize, PAGE_READWRITE, &old);
+		DIE(rc == FALSE, "VirtualProtect");
+
+		printf("PAGE_READWRITE to page %d\n", pageNo);
+	}
 
 	return EXCEPTION_CONTINUE_EXECUTION;
 }
@@ -54,6 +74,8 @@ static LONG CALLBACK access_violation(PEXCEPTION_POINTERS ExceptionInfo)
 static void set_signal(void)
 {
 	/* TODO add VectoredHandler */
+	int rc = AddVectoredExceptionHandler(1, access_violation_handler);
+	DIE(rc == FALSE, "AddVectoredExceptionHandler");
 }
 
 /*
@@ -62,6 +84,8 @@ static void set_signal(void)
 static void restore_signal(void)
 {
 	/* TODO remove VectoredHandler */
+	int rc = RemoveVectoredExceptionHandler(access_violation_handler);
+	DIE(rc == FALSE, "RemoveVectoredExceptionHandler");
 }
 
 int main(void)
@@ -74,6 +98,17 @@ int main(void)
 	 * Use VirtualProtect to set memory protection based on global 'how'
 	 * array; 'how' array keeps protection level for each page
 	 */
+	p = VirtualAlloc(NULL, 3*pageSize, MEM_COMMIT, PAGE_NOACCESS);
+	DIE(p == NULL, "VirtualAlloc");
+
+	rc = VirtualProtect(p + 0*pageSize, pageSize, PAGE_NOACCESS, &old);
+	DIE(rc == FALSE, "VirtualProtect");
+
+	rc = VirtualProtect(p + 1*pageSize, pageSize, PAGE_READONLY, &old);
+	DIE(rc == FALSE, "VirtualProtect");
+
+	rc = VirtualProtect(p + 2*pageSize, pageSize, PAGE_READWRITE, &old);
+	DIE(rc == FALSE, "VirtualProtect");
 
 	set_signal();
 
@@ -84,6 +119,7 @@ int main(void)
 	restore_signal();
 
 	/* TODO 1 - cleanup */
-
+	rc = VirtualFree(p, 3*pageSize, MEM_DECOMMIT);
+	DIE(rc == FALSE, "VirtualFree");
 	return 0;
 }
