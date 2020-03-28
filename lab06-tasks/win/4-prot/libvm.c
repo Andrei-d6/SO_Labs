@@ -51,7 +51,7 @@ static LONG CALLBACK access_violation(PEXCEPTION_POINTERS ExceptionInfo)
 
 		how[pageNo] = PAGE_READONLY;
 
-		rc = VirtualProtect(p+pageNo*pageSize, pageSize, PAGE_READONLY, &old);
+		rc = VirtualProtect(p + pageNo*pageSize, pageSize, PAGE_READONLY, &old);
 		DIE(rc == FALSE, "VirtualProtect");
 
 		printf("PAGE_READONLY to page %d\n", pageNo);
@@ -59,7 +59,7 @@ static LONG CALLBACK access_violation(PEXCEPTION_POINTERS ExceptionInfo)
 
 		how[pageNo] = PAGE_READWRITE;
 
-		rc = VirtualProtect(p+pageNo*pageSize, pageSize, PAGE_READWRITE, &old);
+		rc = VirtualProtect(p + pageNo*pageSize, pageSize, PAGE_READWRITE, &old);
 		DIE(rc == FALSE, "VirtualProtect");
 
 		printf("PAGE_READWRITE to page %d\n", pageNo);
@@ -74,8 +74,8 @@ static LONG CALLBACK access_violation(PEXCEPTION_POINTERS ExceptionInfo)
 static void set_signal(void)
 {
 	/* TODO add VectoredHandler */
-	int rc = AddVectoredExceptionHandler(1, access_violation_handler);
-	DIE(rc == FALSE, "AddVectoredExceptionHandler");
+	access_violation_handler = AddVectoredExceptionHandler(1, access_violation);
+	DIE(access_violation_handler == NULL, "AddVectoredExceptionHandler");
 }
 
 /*
