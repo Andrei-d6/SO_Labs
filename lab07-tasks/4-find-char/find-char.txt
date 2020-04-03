@@ -1,0 +1,4 @@
+Pe baza rularii perf record si perf report se poate observa ca cea mai apelata functie este strlen:
+98,25%  find-char  libc-2.27.so       [.] __strlen_avx2
+
+O metoda de imbunatatire a performantelor programului o poate reprezenta calcularea in afara buclei a valorii lui strlen

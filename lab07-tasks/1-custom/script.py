@@ -33,6 +33,8 @@ def process_event(param_dict):
     HINT: use objdump to find the start address and the end address of
      the function
     '''
+    if (sample['ip'] >= 0x0000092a) and (sample['ip'] < 0x000009f0):
+        hash_search_index_events += 1
 
     all_events += 1
 

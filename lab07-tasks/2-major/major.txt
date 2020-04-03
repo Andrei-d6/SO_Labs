@@ -1,0 +1,33 @@
+Exercițiul 2 - Row/Column major order
+
+Se va urmari numarul de cache miss-uri in cazul parcurgerii pe linii, respectiv pe coloane.
+
+///////LINII///////////
+
+sudo perf stat -e L1-dcache-load-misses ./row
+
+ Performance counter stats for './row':
+
+           363.126      L1-dcache-load-misses                                       
+
+       0,060839194 seconds time elapsed
+
+       0,052730000 seconds user
+       0,008112000 seconds sys
+
+
+///////COLOANE///////////
+
+sudo perf stat -e L1-dcache-load-misses ./column
+
+ Performance counter stats for './column':
+
+        18.571.115      L1-dcache-load-misses                                       
+
+       0,301258881 seconds time elapsed
+
+       0,291214000 seconds user
+       0,008089000 seconds sys
+
+
+Concluzia: in cazul parcurgerii pe linii au fost inregistrate 363.126 cache miss-uri (L1) iar in cazul parcurgerii pe coloane au fost inregistrate 18.571.115 cache miss-uri.

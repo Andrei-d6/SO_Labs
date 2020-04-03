@@ -1,0 +1,2 @@
+Regula make print merge fara Makefile, pentru ca se executa o regula implicita make.
+Motivul pentru care se afiseaza BA este datorita faptului ca afisarea la stdout este bufferata, insa la stderr nu. 

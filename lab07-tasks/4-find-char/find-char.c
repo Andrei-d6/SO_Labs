@@ -66,8 +66,9 @@ char *readstring(const char *fname)
 int find_first_pos(const char *where, const char what)
 {
 	int i = 0;
+	long len = strlen(where);
 
-	for (i = 0; i < strlen(where); i++)
+	for (i = 0; i < len; i++)
 		if (where[i] == what)
 			return i;
 	return -1;

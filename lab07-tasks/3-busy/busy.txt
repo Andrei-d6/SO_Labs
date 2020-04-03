@@ -1,0 +1,6 @@
+Pe baza rularii:
+
+sudo perf top
+
+se poate observa ca programul busy incarca cel mai tare sistemul:
+75,23%  busy                                [.] main
