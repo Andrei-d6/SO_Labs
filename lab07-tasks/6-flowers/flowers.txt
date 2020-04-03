@@ -1,0 +1,25 @@
+valgrind --tool=memcheck ./flowers 
+
+
+==9496== Invalid read of size 1
+==9496==    at 0x4C32CF2: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9496==    by 0x4EBC9D1: puts (ioputs.c:35)
+==9496==    by 0x108758: main (flowers.c:23)
+==9496==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==9496== 
+==9496== 
+==9496== Process terminating with default action of signal 11 (SIGSEGV)
+==9496==  Access not within mapped region at address 0x0
+==9496==    at 0x4C32CF2: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9496==    by 0x4EBC9D1: puts (ioputs.c:35)
+==9496==    by 0x108758: main (flowers.c:23)
+
+Problema provine din faptul ca flowers are dimensiunea 5, astfel, flowers[5] este in afata array-ului.
+Dimensiunea este de 5 deoarece lipseste o ','
+			       Aici
+				|
+const char *flowers[] = {	|
+	"rose", "tulip", "daisy"V
+	"petunia", "orchid", "lily"
+};
+
