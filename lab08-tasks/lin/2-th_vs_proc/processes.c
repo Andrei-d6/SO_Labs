@@ -48,7 +48,10 @@ int main(void)
 		case 0:
 			/* child process */
 			/* TODO - call do_bad_task() for each 4th process */
-			do_task();
+			if (i % 4 == 3)
+				do_bad_task();
+			else
+				do_task();
 
 			exit(0);
 

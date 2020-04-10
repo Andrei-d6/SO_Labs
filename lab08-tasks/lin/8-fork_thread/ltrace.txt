@@ -1,0 +1,65 @@
+SYS_brk(0)                                       = 0x56529f9aa000
+SYS_access("/etc/ld.so.nohwcap", 00)             = -2
+SYS_access("/etc/ld.so.preload", 04)             = -2
+SYS_openat(0xffffff9c, 0x7fc68c34e428, 0x80000, 0) = 3
+SYS_fstat(3, 0x7fff4c949b90)                     = 0
+SYS_mmap(0, 0x2d296, 1, 2)                       = 0x7fc68c526000
+SYS_close(3)                                     = 0
+SYS_access("/etc/ld.so.nohwcap", 00)             = -2
+SYS_openat(0xffffff9c, 0x7fc68c556dd0, 0x80000, 0) = 3
+SYS_read(3, "\177ELF\002\001\001", 832)          = 832
+SYS_fstat(3, 0x7fff4c949bf0)                     = 0
+SYS_mmap(0, 8192, 3, 34)                         = 0x7fc68c524000
+SYS_mmap(0, 0x21e480, 5, 2050)                   = 0x7fc68c10e000
+SYS_mprotect(0x7fc68c128000, 2093056, 0)         = 0
+SYS_mmap(0x7fc68c327000, 8192, 3, 2066)          = 0x7fc68c327000
+SYS_mmap(0x7fc68c329000, 0x3480, 3, 50)          = 0x7fc68c329000
+SYS_close(3)                                     = 0
+SYS_access("/etc/ld.so.nohwcap", 00)             = -2
+SYS_openat(0xffffff9c, 0x7fc68c5244d0, 0x80000, 0) = 3
+SYS_read(3, "\177ELF\002\001\001\003", 832)      = 832
+SYS_fstat(3, 0x7fff4c949bc0)                     = 0
+SYS_mmap(0, 0x3f0ae0, 5, 2050)                   = 0x7fc68bd1d000
+SYS_mprotect(0x7fc68bf04000, 2097152, 0)         = 0
+SYS_mmap(0x7fc68c104000, 0x6000, 3, 2066)        = 0x7fc68c104000
+SYS_mmap(0x7fc68c10a000, 0x3ae0, 3, 50)          = 0x7fc68c10a000
+SYS_close(3)                                     = 0
+SYS_mmap(0, 0x3000, 3, 34)                       = 0x7fc68c521000
+SYS_arch_prctl(4098, 0x7fc68c521740, 0x7fc68c522090, 34) = 0
+SYS_mprotect(0x7fc68c104000, 16384, 1)           = 0
+SYS_mprotect(0x7fc68c327000, 4096, 1)            = 0
+SYS_mprotect(0x56529f5d4000, 4096, 1)            = 0
+SYS_mprotect(0x7fc68c554000, 4096, 1)            = 0
+SYS_munmap(0x7fc68c526000, 184982)               = 0
+SYS_set_tid_address(0x7fc68c521a10, 0x7fff4c94a658, 0x7fc68c521740, 0x7fc68c5559f0) = 0x51b2
+SYS_set_robust_list(0x7fc68c521a20, 24, 0x7fc68c521740, 0x7fc68c5559f0) = 0
+SYS_rt_sigaction(32, 0x7fff4c94a3c0, 0, 8)       = 0
+SYS_rt_sigaction(33, 0x7fff4c94a3c0, 0, 8)       = 0
+SYS_rt_sigprocmask(1, 0x7fff4c94a538, 0, 8)      = 0
+SYS_prlimit64(0, 3, 0, 0x7fff4c94a520)           = 0
+pthread_create(0x7fff4c94a560, 0, 0x56529f3d496a, 0 <unfinished ...>
+        SYS_mmap(0, 0x801000, 0, 0x20022)        = 0x7fc68b51c000
+        SYS_mprotect(0x7fc68b51d000, 8388608, 3) = 0
+        SYS_brk(0)                               = 0x56529f9aa000
+        SYS_brk(0x56529f9cb000)                  = 0x56529f9cb000
+        SYS_clone(0x3d0f00, 0x7fc68bd1bfb0, 0x7fc68bd1c9d0, 0x7fc68bd1c9d0) = 0x51b3
+<... pthread_create resumed> )                   = 0
+fork( <unfinished ...>
+        SYS_clone(0x1200011, 0, 0, 0x7fc68c521a10 <unfinished ...>
+                SYS_clone(0x1200011, 0, 0, 0x7fc68c521a10) = -38
+        <... SYS_clone resumed> )                = 0x51b4
+<... fork resumed> )                             = 20916
+puts("parent here" <unfinished ...>
+        SYS_fstat(1, 0x7fff4c94a3d0)             = 0
+<... puts resumed> )                             = 12
+wait(0x7fff4c94a554 <unfinished ...>
+        SYS_wait4(0xffffffff, 0x7fff4c94a554, 0, 0) = -512
+        SYS_wait4(0xffffffff, 0x7fff4c94a554, 0, 0child here
+) = 0x51b4
+--- SIGCHLD (Child exited) ---
+<... wait resumed> )                             = 20916
+SYS_write(1, "parent here\nthread here\n", 24parent here
+thread here
+)   = 24
+SYS_exit_group(0 <no return ...>
++++ exited (status 0) +++

@@ -64,7 +64,7 @@ static void thread_work(int arg)
 
         /* What happens if you decrease the PERIOD ? */
 
-        usleep(PERIOD);
+        usleep(PERIOD/4);
     }
 }
 
@@ -76,7 +76,18 @@ static int one_time_init(struct once_struct *once_control, void (*f)(void))
    * Call the f() function only if this is the first thread that got here.
    */
 
+	rc = pthread_mutex_lock(&(once_control->mutex));
+	DIE(rc == -1, "pthread_mutex_lock");
+
+	if (once_control->refcount == 0) {
 		(*f)();
+	}
+
+	once_control->refcount++;
+
+	rc = pthread_mutex_unlock(&(once_control->mutex));
+	DIE(rc == -1, "pthread_mutex_unlock");
+
 
 	return 0;
 }
@@ -89,7 +100,17 @@ static int one_time_deinit(struct once_struct *once_control, void (*f)(void))
    * Call the f() function only if this is the last thread that got here.
    */
 
+	rc = pthread_mutex_lock(&(once_control->mutex));
+	DIE(rc == -1, "pthread_mutex_lock");
+
+	if (once_control->refcount == 1) {
 		(*f)();
+	}
+
+	once_control->refcount--;
+	
+	rc = pthread_mutex_unlock(&(once_control->mutex));
+	DIE(rc == -1, "pthread_mutex_unlock");
 
 	return 0;
 }

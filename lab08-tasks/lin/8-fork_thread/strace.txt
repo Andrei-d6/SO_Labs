@@ -1,0 +1,7 @@
+clone(child_stack=0x7fb3988fcfb0, flags=CLONE_VM|CLONE_FS|CLONE_FILES|CLONE_SIGHAND|CLONE_THREAD|CLONE_SYSVSEM|CLONE_SETTLS|CLONE_PARENT_SETTID|CLONE_CHILD_CLEARTID, parent_tidptr=0x7fb3988fd9d0, tls=0x7fb3988fd700, child_tidptr=0x7fb3988fd9d0) = 20935
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7fb399102a10) = 20936
+child here
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=20936, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+parent here
+thread here
++++ exited with 0 +++

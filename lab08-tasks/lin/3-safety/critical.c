@@ -37,9 +37,9 @@ void acquire_lock(void)
          * https://gcc.gnu.org/onlinedocs/gcc/_005f_005fatomic-Builtins.html
          * link and search for "__ATOMIC_SEQ_CST".*/
 
-
-
-
+        if(__atomic_test_and_set(&lock, __ATOMIC_SEQ_CST)) {
+            return;
+        }
         /*
          * Short explanation: High-level language code is translated into
          * low-level code. The low level code is not guaranteed to follow
@@ -63,8 +63,7 @@ void acquire_lock(void)
 void release_lock(void)
 {
 #ifdef USE_SPINLOCK
-
-
+    __atomic_clear(&lock, __ATOMIC_SEQ_CST);
 #else
     pthread_mutex_unlock(&lock);
 #endif

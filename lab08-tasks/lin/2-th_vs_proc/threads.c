@@ -49,7 +49,10 @@ int main(void)
 
 		/* Create a thread and assign do_task as its starting function */
 		/* TODO - call do_bad_task() for each 4th thread */
-		rc = pthread_create(&thread[i], NULL, do_task, &th_id[i]);
+		if (i % 4 == 3)
+			rc = pthread_create(&thread[i], NULL, do_bad_task, &th_id[i]);
+		else
+			rc = pthread_create(&thread[i], NULL, do_task, &th_id[i]);
 		DIE(rc == -1, "pthread_create");
 	}
 

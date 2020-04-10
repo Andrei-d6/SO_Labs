@@ -61,7 +61,6 @@ void *thread_function(void *args)
 	write_to_thread_log("Thread starting.");
 
 	/* Do some work ... */
-
 	return NULL;
 }
 
