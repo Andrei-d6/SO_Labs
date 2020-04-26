@@ -1,0 +1,4 @@
+In cazul folosirii functiei thread_function care se foloseste de interlockedIncrement 
+timpul de rulare este de aproximativ: 375ms
+
+In cazul folosrii functiei thread_function_mutex timpul de rulare este aproximativ: 15615ms
