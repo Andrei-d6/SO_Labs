@@ -28,10 +28,15 @@ DWORD CreateThresholdBarrier(THB_OBJECT *pthb, DWORD b_value)
 		return FALSE;
 
 	/* TODO - Create Mutex */
-	
+	hthb->hGuard = CreateMutex(NULL, FALSE, NULL);
+	if (hthb->hGuard == NULL)
+		return FALSE;
 
 	/* TODO - Create Event */
-	
+	hthb->hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+	if (hthb->hEvent == NULL)
+		return FALSE;
+
 	/* set maximum number of waithing threads */
 	hthb->dwThreshold = b_value;
 	
@@ -46,7 +51,16 @@ DWORD WaitThresholdBarrier(THB_OBJECT thb)
 {
 	/* TODO - Wait for the specified number of thread to reach */
 	/* the barrier, then broadcast the release to all waiting threads */
+	WaitForSingleObject(thb->hGuard, INFINITE);
+	thb->dwCount++;
 
+	if (thb->dwCount < thb->dwThreshold) {
+		SignalObjectAndWait(thb->hGuard, thb->hEvent, INFINITE, FALSE);
+	} else {
+		thb->dwCount = 0;
+		PulseEvent(thb->hEvent);
+		ReleaseMutex(thb->hGuard);
+	}
 
 	return 0;
 }

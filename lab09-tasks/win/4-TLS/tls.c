@@ -23,6 +23,7 @@ VOID myPerror(char *description)
 	DWORD err = 0;
 
 	/* TODO - get error id from TLS */
+	err = (DWORD) TlsGetValue(myErrno);
 
 	switch (err) {
 	case ERR_A:
@@ -80,6 +81,8 @@ DWORD main(VOID)
 	int i;
 
 	/* TODO - allocate TLS index */
+	myErrno = TlsAlloc();
+	DIE(myErrno == TLS_OUT_OF_INDEXES, "TlsALloc");
 
 	/* create threads */
 	for (i = 0; i < NO_THREADS; i++) {
@@ -100,6 +103,8 @@ DWORD main(VOID)
 	}
 
 	/* TODO - free TLS index */
+	dwReturn = TlsFree(myErrno);
+	DIE(dwReturn == FALSE, "TlsFree");
 
 	return 0;
 }

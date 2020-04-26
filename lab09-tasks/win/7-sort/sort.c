@@ -106,6 +106,11 @@ DWORD WINAPI ThreadFunc(LPVOID lpParameter)
 			(td.threadId + pow2 < NO_THREADS)) {
 
 		/* TODO - merge chunks */
+		dwRet = WaitForSingleObject(threads[td.threadId + pow2], INFINITE);
+		thData[td.threadId].lpChunk = MergeChunks(
+									thData[td.threadId].lpChunk,
+									thData[td.threadId + pow2].lpChunk);
+		pow2 = pow2 * 2;
 	}
 
 	printf("thread %d done\n", td.threadId);
@@ -146,10 +151,27 @@ HANDLE init_setup(LPSTR filename)
 		chunk = malloc(sizeof(CHUNK));
 
 		/* TODO - init chunk */
+		chunk->dwLen = ((i+1) * chunkSize > N ?  N - (i * chunkSize) : chunkSize);
+		chunk->lpMem = (LPDWORD)pmap + i * chunkSize;
 
 		/* TODO - create thread */
-	}
+		thData[i].threadId = i;
+		thData[i].lpChunk = chunk;
 
+		threads[i] = CreateThread(
+							NULL,
+							0,
+							ThreadFunc,
+							&thData[i],
+							CREATE_SUSPENDED,
+							NULL
+							);
+	}
+	for (i = 0; i < NO_THREADS; i++) {
+		dwRet = ResumeThread(threads[i]);
+		if (dwRet == FALSE)
+			exit(1);
+	}
 	return hFile;
 }
 

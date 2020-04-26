@@ -27,8 +27,11 @@ DWORD WINAPI thread_function(LPVOID arg)
 		 * - If the counter hits LIMIT, reset counter
 		 * - Use Interlocked operations
 		 */
+		InterlockedIncrement(&count);
+		InterlockedCompareExchange(&count, 0, LIMIT);
 	}
 
+	//~375ms
 	return 0;
 }
 
@@ -40,12 +43,14 @@ DWORD WINAPI thread_function_mutex(LPVOID arg)
 		/* TODO 2:
 		 * - Protect operations with a mutex
 		 */
-
+		WaitForSingleObject(hMutex, INFINITE);
 		count++;
 		if (count == LIMIT)
 			count = 0;
+		ReleaseMutex(hMutex);
 	}
 
+	//~15615ms
 	return 0;
 }
 
@@ -66,6 +71,9 @@ int main(void)
 		for (i = 0; i < NO_THREADS; i++) {
 			hThread[i] = CreateThread(NULL, 0,
 					thread_function, NULL, 0, NULL);
+
+			//hThread[i] = CreateThread(NULL, 0,
+			//		thread_function_mutex, NULL, 0, NULL);
 			DIE(hThread[i] == NULL, "CreateThread");
 		}
 
