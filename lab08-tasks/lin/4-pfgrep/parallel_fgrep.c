@@ -90,7 +90,7 @@ static void split_file_mapping(struct file_mapping *fmap)
 {
 	/* split file mapping into chunks for each thread
 	 * initialize th_params structures for each thread
-	 */
+	 */15p pentru explicatii oferite in README
 	size_t chunk_size = (fmap->size + NUM_THREADS - 1) / NUM_THREADS;
 	int i;
 
