@@ -118,7 +118,9 @@ static void init_overlapped(OVERLAPPED *lpo, DWORD offset,
 		HANDLE hEvent)
 {
 	/* TODO - prepare overlapp structure */
-
+	memset(lpo, 0, sizeof(*lpo));
+	lpo->Offset = offset;
+	lpo->hEvent = hEvent;
 }
 
 /*
@@ -133,10 +135,33 @@ static void do_io_async(void)
 	DWORD bytes_written, dwRet;
 
 	/* TODO - allocate memory for ov array (n_files elements) */
+	ov = (OVERLAPPED *) calloc(n_files, sizeof(*ov));
+	DIE(ov == NULL, "malloc");
 
 	/* TODO - init structure and write data asynchronously for all files */
+	for (i = 0; i < n_files; i++) {
+		init_overlapped(&ov[i], 0, NULL);
+		dwRet = WriteFile(
+					fds[i],
+					g_buffer,
+					BUFSIZ,
+					NULL,
+					&ov[i]);
+		if (dwRet == FALSE) {
+			dwRet = GetLastError();
+			DIE(dwRet != ERROR_IO_PENDING, "WriteFile");
+		}
+	}
 
 	/* TODO - wait for all asynchronous operations to complete */
+	for (i = 0; i < n_files; i++) {
+		dwRet = GetOverlappedResult(
+					fds[i],
+					&ov[i],
+					&bytes_written,
+					TRUE);
+		DIE(dwRet == FALSE, "GetOverlappedResult");
+	}
 
 }
 

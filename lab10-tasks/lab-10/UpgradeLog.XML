@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="lab-10">
+</Property><Property Name="Solution File" Value="C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\lab-10.sln">
+</Property><Property Name="Date" Value="Friday, May 08, 2020">
+</Property><Property Name="Time" Value="18:34 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="lab-10.sln" Description="File successfully backed up as C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\lab-10.sln.old">
+</Event><Event ErrorLevel="0" Project="2-test_overlapp" Source="1-test_overlapp\2-test_overlapp.vcproj" Description="Converting project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\1-test_overlapp\2-test_overlapp.vcproj'.">
+</Event><Event ErrorLevel="1" Project="2-test_overlapp" Source="1-test_overlapp\2-test_overlapp.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="2-test_overlapp" Source="1-test_overlapp\2-test_overlapp.vcproj" Description="Done converting to new project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\1-test_overlapp\2-test_overlapp.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="2-test_overlapp" Source="1-test_overlapp\2-test_overlapp.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="2-transmit-client" Source="2-transmit\2-transmit-client.vcproj" Description="Converting project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\2-transmit\2-transmit-client.vcproj'.">
+</Event><Event ErrorLevel="1" Project="2-transmit-client" Source="2-transmit\2-transmit-client.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="2-transmit-client" Source="2-transmit\2-transmit-client.vcproj" Description="Done converting to new project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\2-transmit\2-transmit-client.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="2-transmit-client" Source="2-transmit\2-transmit-client.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="2-transmit-server" Source="2-transmit\2-transmit-server.vcproj" Description="Converting project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\2-transmit\2-transmit-server.vcproj'.">
+</Event><Event ErrorLevel="1" Project="2-transmit-server" Source="2-transmit\2-transmit-server.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="2-transmit-server" Source="2-transmit\2-transmit-server.vcproj" Description="Done converting to new project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\2-transmit\2-transmit-server.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="2-transmit-server" Source="2-transmit\2-transmit-server.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="generator" Source="generator\generator.vcproj" Description="Converting project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\generator\generator.vcproj'.">
+</Event><Event ErrorLevel="1" Project="generator" Source="generator\generator.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="generator" Source="generator\generator.vcproj" Description="Done converting to new project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\generator\generator.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="generator" Source="generator\generator.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="3-aio" Source="3-aio\3-aio.vcproj" Description="Converting project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\3-aio\3-aio.vcproj'.">
+</Event><Event ErrorLevel="1" Project="3-aio" Source="3-aio\3-aio.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="3-aio" Source="3-aio\3-aio.vcproj" Description="Done converting to new project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\3-aio\3-aio.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="3-aio" Source="3-aio\3-aio.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="4-iocp" Source="4-iocp\4-iocp.vcproj" Description="Converting project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\4-iocp\4-iocp.vcproj'.">
+</Event><Event ErrorLevel="1" Project="4-iocp" Source="4-iocp\4-iocp.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="4-iocp" Source="4-iocp\4-iocp.vcproj" Description="Done converting to new project file 'C:\Users\Student\Desktop\SO_Git\lab10-tasks\lab-10\4-iocp\4-iocp.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="4-iocp" Source="4-iocp\4-iocp.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="lab-10.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="lab-10.sln" Description="Converted">
+</Event></UpgradeLog>

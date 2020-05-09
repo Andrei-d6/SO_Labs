@@ -137,11 +137,19 @@ static void init_io_async(void)
 	size_t i;
 
 	/* TODO - allocate memory for ov array */
+	ov = (OVERLAPPED *) malloc(n_files * sizeof(*ov));
+	DIE(ov == NULL, "malloc");
 
 	/* TODO - init I/O completion port context */
+	for (i = 0; i < n_files; i++)
+		init_overlapped(&ov[i], 0, 0);
+
+	iocp = iocp_init();
+	DIE(iocp == NULL, "iocp_init");
 
 	/* TODO - add handles to completion port */
-
+	for (i = 0; i < n_files; i++)
+		DIE(iocp_add(iocp, fds[i]) == NULL, "iocp_add");
 }
 
 static void free_io_async(void)
@@ -167,7 +175,10 @@ static void do_io_async(void)
 					NULL,
 					&ov[i]);
 		/* TODO - treat possbile error that is not ERROR_IO_PENDING */
-
+		if (dwRet == FALSE) {
+			dwRet = GetLastError();
+			DIE(dwRet != ERROR_IO_PENDING, "WriteFile");
+		}
 	}
 }
 
