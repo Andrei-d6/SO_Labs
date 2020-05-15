@@ -33,7 +33,7 @@ static int pipes[CLIENT_COUNT][2];
 int chld_pid[CLIENT_COUNT];
 
 /* TODO - uncomment this for task 3 */
-/* #define USE_EVENTFD */
+//#define USE_EVENTFD
 int event_fd;
 
 static void set_event(int index, uint64_t *event)
@@ -64,8 +64,16 @@ static int server(void)
 	printf("server: started\n");
 
 	/* TODO - init epoll and remember to close write pipe heads */
-	for (i = 0; i < CLIENT_COUNT; i++) {
+	efd = epoll_create(CLIENT_COUNT);
+	DIE(efd < 0, "epoll_create");
 
+	for (i = 0; i < CLIENT_COUNT; i++) {
+		close(pipes[i][PIPE_WRITE]);
+
+		ev.data.fd = pipes[i][PIPE_READ];
+		ev.events = EPOLLIN;
+		rc = epoll_ctl(efd, EPOLL_CTL_ADD, pipes[i][PIPE_READ], &ev);
+		DIE(rc < 0, "epoll_ctl");
 	}
 
 	/* number of received messages */
@@ -73,15 +81,38 @@ static int server(void)
 
 	while (recv_msgs < CLIENT_COUNT) {
 		/* TODO - use epoll to wait to read from pipes */
+		struct epoll_event ret_ev;
+		
+		rc = epoll_wait(efd, &ret_ev, 1, -1);
+		DIE(rc < 0, "epoll_wait");
+	
+		if (ret_ev.data.fd == event_fd) {
+			read(ret_ev.data.fd, &event, sizeof(uint64_t));
+			
+			/* not close pipe head */
+			index = get_index(event);
+			close(pipes[index][PIPE_READ]);
+
+			continue;
+		}
+
+		if ((ret_ev.events & EPOLLIN) != 0) {
+			recv_msgs ++;
+			recv_count = read(ret_ev.data.fd, msg, MSG_SIZE);
+			DIE(recv_count < 0, "read");
+
+			msg[recv_count] = '\0';
+			printf("received:%s\n", msg);
+		}
 
 	}
 
 	printf("server: going to wait for clients to end\n");
 
-	for (i = 0; i < CLIENT_COUNT; ++i) {
+	//for (i = 0; i < CLIENT_COUNT; ++i) {
 		rc = waitpid(ANY, &status, 0);
 		DIE(rc < 0, "waitpid");
-	}
+	//}
 
 	printf("server: exiting\n");
 	return 0;
@@ -117,10 +148,12 @@ static int client(unsigned int index)
 	/* TODO 2 - Init event (see set_event()) and use it to signal the
 	 * server of our termination
 	 */
-
+	set_event(index, &event);
 	printf("client %d sending MAGIC exit = 0x%lx\n", index,
 			(unsigned long)event);
 
+	rc = write(event_fd, &event, sizeof(event));
+	DIE(rc < 0, "write");
 #endif
 
 	printf("client %i: exiting\n", index);
@@ -146,7 +179,8 @@ int main(void)
 
 #ifdef USE_EVENTFD
 	/* TODO 2 - create eventfd  - (task3) */
-
+	event_fd = eventfd(0, 0);
+	DIE(event_fd < 0, "eventfd");
 #endif
 
 	/* Crate clients as child processes */
