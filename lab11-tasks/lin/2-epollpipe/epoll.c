@@ -33,7 +33,7 @@ static int pipes[CLIENT_COUNT][2];
 int chld_pid[CLIENT_COUNT];
 
 /* TODO - uncomment this for task 3 */
-//#define USE_EVENTFD
+#define USE_EVENTFD
 int event_fd;
 
 static void set_event(int index, uint64_t *event)
@@ -89,6 +89,11 @@ static int server(void)
 		if (ret_ev.data.fd == event_fd) {
 			read(ret_ev.data.fd, &event, sizeof(uint64_t));
 			
+			index = get_index(event);
+
+			rc = epoll_ctl(ret_ev.data.fd, EPOLL_CTL_DEL, pipes[index][PIPE_READ], &ret_ev);
+			DIE(rc < 0, "epoll_ctl");
+
 			/* not close pipe head */
 			index = get_index(event);
 			close(pipes[index][PIPE_READ]);
@@ -169,7 +174,6 @@ int main(void)
 	unsigned int i;
 	int rc;
 	pid_t pid;
-
 
 	/* Init pipes */
 	for (i = 0 ; i < CLIENT_COUNT; i++) {

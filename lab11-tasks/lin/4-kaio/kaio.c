@@ -37,7 +37,7 @@ static char *files[] = {
 
 
 /* TODO 2 - Uncomment this to use eventfd */
-#define USE_EVENTFD	1
+//#define USE_EVENTFD	1
 
 /* eventfd file descriptor */
 int efd;
@@ -170,7 +170,6 @@ static void do_io_async(void)
 
 	/* wait for completion*/
 	wait_aio(ctx, n_files);
-
 
 	/* TODO 1 - destroy aio context */
 	io_destroy(ctx);
