@@ -37,7 +37,7 @@ static char *files[] = {
 
 
 /* TODO 2 - Uncomment this to use eventfd */
-//#define USE_EVENTFD	1
+#define USE_EVENTFD	1
 
 /* eventfd file descriptor */
 int efd;
@@ -116,12 +116,11 @@ static void wait_aio(io_context_t ctx, int nops)
 	 *
 	 *	Use eventfd for completion notify
 	 */
-	for (i = 0; i < nops; ) {
+	for (i = 0; i < nops; i += efd_ops) {
 		rc = read(efd, &efd_ops, sizeof(efd_ops));
 		DIE(rc < 0, "read eventfd");
 
 		printf("%d aio ops completed\n", (int) efd_ops);
-		i += efd_ops;
 	}
 
 #endif
@@ -143,16 +142,16 @@ static void do_io_async(void)
 	int n_aio_ops, rc;
 
 	/* TODO 1 - allocate iocb and piocb */
-	iocb = (struct iocb *) malloc(n_files * sizeof(*iocb));
+	iocb = malloc(n_files * sizeof(*iocb));
 	DIE(iocb == NULL, "malloc");
 
-	piocb = (struct iocb **) malloc(n_files * sizeof(*piocb));
+	piocb = malloc(n_files * sizeof(*piocb));
 	DIE(piocb == NULL, "malloc");
 
 	for (i = 0; i < n_files; i++) {
 		/* TODO 1 - initialiaze iocb and piocb */
-		io_prep_pwrite(&iocb[i], fds[i], g_buffer, BUFSIZ, 0);
-		piocb[i] = &iocb[i];
+		piocb[i] = memset(iocb + i, 0, sizeof(*iocb));
+		io_prep_pwrite(iocb + i, fds[i], g_buffer, sizeof(g_buffer), 0);
 
 #ifdef USE_EVENTFD
 		/* TODO 2 - set up eventfd notification */
