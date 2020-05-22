@@ -48,12 +48,16 @@ void listDir(char *dirname, int indent)
 	DIE(dir == NULL, "opendir");
 
 	while ((entry = readdir(dir)) != NULL) {
+
 		if (entry->d_type == DT_DIR) {
             char path[1024];
+
             if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
                 continue;
+
             snprintf(path, sizeof(path), "%s/%s", dirname, entry->d_name);
             printf("%*s[%s]\n", indent, "", entry->d_name);
+
             listDir(path, indent + 2);
         } else
         	printf("%*s- %s\n", indent, "", entry->d_name);
@@ -110,7 +114,9 @@ int main(void)
 				type = 'b';
 
 			printf("%s: <%c> %d:%d\n",
-			       arg1, type/* type */, major(sb.st_dev)/* major */, minor(sb.st_dev)/* minor */);
+			       arg1, type/* type */, 
+			       major(sb.st_dev)/* major */, 
+			       minor(sb.st_dev)/* minor */);
 		}
 #endif
 
@@ -123,7 +129,7 @@ int main(void)
 			arg2 = strtok(NULL, delim); /* target */
 			arg3 = strtok(NULL, delim);/* fs_type (e.g: ext2) */
 			
-			ret = mount(arg1, arg2, arg3, 0, NULL);
+			ret = mount(arg1, arg2, arg3, MS_REMOUNT, NULL);
 			DIE(ret == -1, "mount");
 		}
 
